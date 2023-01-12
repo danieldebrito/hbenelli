@@ -1,0 +1,43 @@
+.nav-link {
+    font-size: 18px;
+    color: #4260a8 !important;
+    font-weight: bold;
+    //text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.2em;
+}
+
+.nav-link:hover {
+    color: #4260a8 !important;
+    text-shadow: rgb(202, 202, 202) 0.1em 0.1em 0.2em;
+}
+
+.navbar-collapse {
+    justify-content: center,
+}
+
+.navbar {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    font-weight: bold;
+}
+
+img {
+    width: 70px;
+}
+
+.avatar {
+    width: 25px;
+    height: 25px;
+    border-radius: 25px;
+}
+
+img {
+    width: 80px;
+}
+
+/*
+.bg {
+  // background-color: #4260a8 !important;
+}*/
