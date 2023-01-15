@@ -1,12 +1,17 @@
 .nav-link {
     font-size: 18px;
-    color: #4260a8 !important;
+    color: #4E60AE !important;
     font-weight: bold;
     //text-shadow: rgb(0, 0, 0) 0.1em 0.1em 0.2em;
+
+    
+    margin: 0;
+    padding: 0;
+    font-family: "baloo", "arial", sans-serif;
 }
 
 .nav-link:hover {
-    color: #4260a8 !important;
+    color: #4E60AE !important;
     text-shadow: rgb(202, 202, 202) 0.1em 0.1em 0.2em;
 }
 
@@ -34,10 +39,18 @@ img {
 }
 
 img {
-    width: 80px;
+    width: 120px;
 }
 
 /*
 .bg {
   // background-color: #4260a8 !important;
 }*/
+
+.baloo {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: "baloo", "arial", sans-serif;
+  }
+  
