@@ -96,6 +96,41 @@ section {
   color: var(--color-primary);
 }
 
+.section-title {
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.section-title h2 {
+  font-size: 32px;
+  // font-weight: bold;
+  // text-transform: uppercase;
+  position: relative;
+  color: #ffffff;
+}
+
+.section-title h2::before,
+.section-title h2::after {
+  content: "";
+  width: 50px;
+  height: 2px;
+  background: #ffffff;
+  display: inline-block;
+}
+
+.section-title h2::before {
+  margin: 0 15px 10px 0;
+}
+
+.section-title h2::after {
+  margin: 0 0 10px 15px;
+}
+
+.section-title p {
+  margin: 15px 0 0 0;
+}
+
+
 /*--------------------------------------------------------------
   # Breadcrumbs
   --------------------------------------------------------------*/
@@ -368,7 +403,7 @@ section {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("./../../../assets/img/stats-bg.jpg"), center center;
   background-size: cover;
-  padding: 100px 0;
+  padding: 150px 0;
 }
 
 @media (min-width: 1365px) {
@@ -516,8 +551,8 @@ section {
   width: 100%;
   background-size: cover;
   position: relative;
-  min-height: 60vh;
-  padding: 200px 0 60px 0;
+  //min-height: 60vh;
+  //padding: 200px 0 60px 0;
 }
 
 .hero h2 {
@@ -598,7 +633,7 @@ section {
   font-family: "baloo", "arial", sans-serif;
 }
 
-h5 {
+h2 {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
