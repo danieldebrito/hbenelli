@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs';
+import { Articulo } from '../class/articulo';
 import { BaseService } from './_base.service';
+
 
 
 @Injectable({
@@ -13,7 +16,9 @@ export class ArticulosService {
 
   // GET all articles
   getAll() {
-    return this.baseService.get(this.baseUrl);
+    return this.baseService.get(this.baseUrl).pipe(
+      map(data => Object.values(data).map(articulo => new Articulo(articulo)))
+    );
   }
 
   // GET one article by ID
