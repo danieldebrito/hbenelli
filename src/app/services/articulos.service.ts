@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs';
+import { catchError, map, throwError } from 'rxjs';
 import { Articulo } from '../class/articulo';
 import { BaseService } from './_base.service';
 
@@ -17,7 +17,8 @@ export class ArticulosService {
   // GET all articles
   getAll() {
     return this.baseService.get(this.baseUrl).pipe(
-      map(data => Object.values(data).map(articulo => new Articulo(articulo)))
+      map(data => Object.values(data).map(articulo => new Articulo(articulo))),
+      catchError(err => this.handleError(err))
     );
   }
 
@@ -40,4 +41,16 @@ export class ArticulosService {
   delete(id: number) {
     return this.baseService.delete(`${this.baseUrl}${id}/`);
   }
+
+
+  handleError(error: any) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      errorMessage = `Error: ${error.error.message}`;
+    } else {
+      errorMessage = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return throwError(() => new Error(errorMessage));
+  }
+
 }
