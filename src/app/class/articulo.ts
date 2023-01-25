@@ -7,6 +7,7 @@ export class Articulo {
     public codigo?: string,
     public nombre?: string,
     public peso?: string,
-    public unidad?: string
+    public unidad?: string,
+    public urlPhoto?: string
   ) { }
 }

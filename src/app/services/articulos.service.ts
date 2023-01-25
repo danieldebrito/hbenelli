@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, map, throwError } from 'rxjs';
+import { catchError, map, Observable, throwError } from 'rxjs';
 import { Articulo } from '../class/articulo';
 import { BaseService } from './_base.service';
 
@@ -15,12 +15,11 @@ export class ArticulosService {
   constructor(private baseService: BaseService) { }
 
   // GET all articles
-  getAll() {
+  getAll(): Observable<Articulo[]> {
     return this.baseService.get(this.baseUrl).pipe(
-      map(data => Object.values(data).map(articulo => new Articulo(articulo))),
-      catchError(err => this.handleError(err))
+        map((data: Object) => data as Articulo[])
     );
-  }
+}
 
   // GET one article by ID
   getById(id: number) {
