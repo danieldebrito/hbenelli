@@ -3,7 +3,7 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
   
   
-  <div class="col" *ngFor="let item of articulos | paginate: { itemsPerPage: 15, currentPage: 1 }">
+  <div class="col" *ngFor="let item of articulos | paginate: { itemsPerPage: 15, currentPage: p }">
     <app-card [articulo]="item" ></app-card>
   </div>
 
