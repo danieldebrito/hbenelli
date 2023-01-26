@@ -14,12 +14,12 @@ export class ArticulosService {
 
   constructor(private baseService: BaseService) { }
 
-  // GET all articles
+  // GET all
   getAll(): Observable<Articulo[]> {
     return this.baseService.get(this.baseUrl).pipe(
-        map((data: Object) => data as Articulo[])
+      map((data: Object) => data as Articulo[])
     );
-}
+  }
 
   // GET one article by ID
   getById(id: number) {

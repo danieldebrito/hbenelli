@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Articulo } from 'src/app/class/articulo';
 
 @Component({
@@ -6,17 +6,12 @@ import { Articulo } from 'src/app/class/articulo';
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
 
   @Input() articulo: Articulo = {};
   @Output() lanzaCompra = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit(){
-setTimeout(() => {
-  console.log(this.articulo);
-}, 2000);
-  }
 
 }

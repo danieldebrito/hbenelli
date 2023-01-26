@@ -1,5 +1,6 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Categoria } from 'src/app/class/categoria';
 
 @Component({
   selector: 'app-catalogo-side-menu',
@@ -9,6 +10,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class CatalogoSideMenuComponent implements OnInit{
 
   @Output() repuestoBuscar = new EventEmitter();
+  @Input() categorias: Categoria[] = [];
+
 
   // repuestos: Repuesto[] = [];
 

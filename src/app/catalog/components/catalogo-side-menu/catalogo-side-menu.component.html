@@ -4,18 +4,17 @@
       <div class="p-3">
         <div class="p-2">
           <select class="form-select" aria-label="Default select example" formControlName="marca">
-            <option value="" disabled selected hidden>Filtrar por Marca</option>
-            <option *ngFor="let item of marcas" value="{{ item }}" >
-              {{ item }}
-            </option>
+            <option value="" disabled selected hidden>Filtrar por Rubro</option>
+            <option value="alimentaria"> Alimentaria </option>
+            <option value="alimentaria"> Textil </option>
           </select>
         </div>
   
         <div class="p-2">
           <select class="form-select" aria-label="Default select example" formControlName="modelo">
-            <option value="" disabled selected hidden>Filtrar por Modelo</option>
-            <option *ngFor="let item of modelos" value="{{ item }}" >
-              {{ item }}
+            <option value="" disabled selected hidden>Filtrar por Sub Rubro</option>
+            <option *ngFor="let item of categorias" value="{{ item.categoria }}" >
+              {{ item.categoria }}
             </option>
           </select>
         </div>

@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
+import { map, Observable } from 'rxjs';
+import { Categoria } from '../class/categoria';
 import { BaseService } from './_base.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CategoriasService {
-  private baseUrl = 'articulos';
+  private baseUrl = 'categorias';
 
   constructor(private baseService: BaseService) { }
 
-  // GET all articles
-  getAll() {
-    return this.baseService.get(this.baseUrl);
+  // GET all
+  getAll(): Observable<Categoria[]> {
+    return this.baseService.get(this.baseUrl).pipe(
+      map((data: Object) => data as Categoria[])
+    );
   }
 
   // GET one article by ID
