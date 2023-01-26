@@ -3,6 +3,8 @@ import { Articulo } from 'src/app/class/articulo';
 import { Categoria } from 'src/app/class/categoria';
 import { ArticulosService } from 'src/app/services/articulos.service';
 import { CategoriasService } from 'src/app/services/categorias.service';
+import { Busqueda } from 'src/app/class/busqueda';
+
 
 @Component({
   selector: 'app-catalog-main',
@@ -31,8 +33,18 @@ export class CatalogMainComponent implements OnInit {
     this.categoriasSv.getAll().subscribe(data => {
       this.categorias = data;
 
-      console.table(this.categorias);
+      // console.table(this.categorias);
     });
+  }
+
+  public filtrar(event: Busqueda) {
+
+    console.log(event);
+
+    
+    event.rubro !== '' ? this.articulos = this.articulos.filter(r => r.subcategoria === event.rubro) : this.articulos; // = this.articulos.map(r => r.subcategoria);
+    event.subrubro !== null ? this.articulos = this.articulos.filter(r => r.idCategoria === event.subrubro) : this.articulos; // = this.repuestos.map(r => r.modelo);
+    
   }
 
 

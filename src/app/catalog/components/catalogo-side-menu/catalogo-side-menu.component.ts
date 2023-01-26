@@ -1,48 +1,39 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Articulo } from 'src/app/class/articulo';
 import { Categoria } from 'src/app/class/categoria';
+import { Busqueda } from 'src/app/class/busqueda';
 
 @Component({
   selector: 'app-catalogo-side-menu',
   templateUrl: './catalogo-side-menu.component.html',
   styleUrls: ['./catalogo-side-menu.component.scss']
 })
-export class CatalogoSideMenuComponent implements OnInit{
+export class CatalogoSideMenuComponent implements OnInit {
 
-  @Output() repuestoBuscar = new EventEmitter();
+  @Output() busquedaSeleccionada = new EventEmitter();
   @Input() categorias: Categoria[] = [];
 
+  public articulo: Articulo;
 
-  // repuestos: Repuesto[] = [];
-
-  public marcas: string[] = [];
-  public modelos: string[] = [];
-  public rubros: string[] = [];
-  public subRubros: string[] = [];
-
-  // public repuesto: Repuesto;
+  public busqueda: Busqueda = {
+    rubro: "",
+    subrubro: 0
+  }
 
   constructor(
     // private repuestosSv: repuestosService,
-  ) { }
+  ) {
+    this.articulo = {};
+  }
 
   altaForm = new FormGroup({
-    marca: new FormControl('', [
-      Validators.required,
-      Validators.minLength(2),
-      Validators.maxLength(40),
-    ]),
-    modelo: new FormControl('', [
-      Validators.required,
-      Validators.minLength(2),
-      Validators.maxLength(40),
-    ]),
     rubro: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(40),
     ]),
-    subRubro: new FormControl('', [
+    subrubro: new FormControl('', [
       Validators.required,
       Validators.minLength(2),
       Validators.maxLength(40),
@@ -50,7 +41,36 @@ export class CatalogoSideMenuComponent implements OnInit{
   });
 
 
-  public onSubmit() { }
+  public onSubmit() {
+
+    this.busqueda.rubro = this.altaForm.getRawValue().rubro;
+    this.busqueda.subrubro = this.altaForm.getRawValue().subrubro;
+
+    this.busquedaSeleccionada.emit(
+      this.busqueda
+    );
+
+    // console.log(this.busqueda);
+
+    /*
+    this.articulo = this.altaForm.getRawValue();
+    this.filtrar(this.repuesto);
+    this.repuestoBuscar.emit({
+      repuestoLanzado: this.repuesto,
+      repuestosLanzados: this.repuestos
+    });
+    */
+  }
+
+  /*
+  public filtrar(repuesto: Repuesto) {
+    repuesto.marca !== '' ? this.repuestos = this.repuestos.filter(r => r.marca === repuesto.marca) : this.marcas = this.repuestos.map(r => r.marca);
+    repuesto.modelo !== '' ? this.repuestos = this.repuestos.filter(r => r.modelo === repuesto.modelo) : this.modelos = this.repuestos.map(r => r.modelo);
+
+
+    // this.mapearFiltros();
+  }
+  */
 
   public reset() { }
 
@@ -79,14 +99,7 @@ export class CatalogoSideMenuComponent implements OnInit{
     this.subRubros = [...new Set(this.repuestos.map((r) => r.subRubro).sort())];
   }
 
-  public onSubmit() {
-    this.repuesto = this.altaForm.getRawValue();
-    this.filtrarRepuestos(this.repuesto);
-    this.repuestoBuscar.emit({
-      repuestoLanzado: this.repuesto,
-      repuestosLanzados: this.repuestos
-    });
-  }
+
 
   public reset() {
     this.altaForm.reset({
