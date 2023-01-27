@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Articulo } from 'src/app/class/articulo';
 import { Categoria } from 'src/app/class/categoria';
 
@@ -7,11 +7,16 @@ import { Categoria } from 'src/app/class/categoria';
   templateUrl: './catalog-cards-grid.component.html',
   styleUrls: ['./catalog-cards-grid.component.scss']
 })
-export class CatalogCardsGridComponent {
+export class CatalogCardsGridComponent implements OnChanges {
 
   p = 1;
 
   @Input() articulos: Articulo[] = [];
   @Input() categorias: Categoria[] = [];
-
+ 
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['articulos']) {
+      this.articulos = changes['articulos'].currentValue;
+    }
+  }
 }

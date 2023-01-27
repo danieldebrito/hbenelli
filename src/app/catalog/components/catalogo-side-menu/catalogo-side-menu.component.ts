@@ -49,17 +49,6 @@ export class CatalogoSideMenuComponent implements OnInit {
     this.busquedaSeleccionada.emit(
       this.busqueda
     );
-
-    // console.log(this.busqueda);
-
-    /*
-    this.articulo = this.altaForm.getRawValue();
-    this.filtrar(this.repuesto);
-    this.repuestoBuscar.emit({
-      repuestoLanzado: this.repuesto,
-      repuestosLanzados: this.repuestos
-    });
-    */
   }
 
   /*

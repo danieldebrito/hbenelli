@@ -14,6 +14,8 @@ import { Busqueda } from 'src/app/class/busqueda';
 export class CatalogMainComponent implements OnInit {
 
   public articulos: Articulo[] = [];
+  public filterArticulos: Articulo[] = [];
+
   public categorias: Categoria[] = [];
 
 
@@ -32,20 +34,23 @@ export class CatalogMainComponent implements OnInit {
   public getCategorias() {
     this.categoriasSv.getAll().subscribe(data => {
       this.categorias = data;
+      this.filterArticulos = data;
 
       // console.table(this.categorias);
     });
   }
 
-  public filtrar(event: Busqueda) {
-
-    console.log(event);
-
-    
-    event.rubro !== '' ? this.articulos = this.articulos.filter(r => r.subcategoria === event.rubro) : this.articulos; // = this.articulos.map(r => r.subcategoria);
-    event.subrubro !== null ? this.articulos = this.articulos.filter(r => r.idCategoria === event.subrubro) : this.articulos; // = this.repuestos.map(r => r.modelo);
-    
+  filtrar(event: Busqueda) {
+    let filteredArticulos = [...this.articulos]; // resetear el filtrado cada vez que se hace una nueva búsqueda
+    if (event.rubro !== '') {
+      filteredArticulos = this.articulos.filter(a => a.subcategoria === event.rubro);
+    }
+    if (event.subrubro !== '') {
+      filteredArticulos = filteredArticulos.filter(r => r.idCategoria === event.subrubro);
+    }
+    this.filterArticulos = filteredArticulos;
   }
+
 
 
   ngOnInit(): void {

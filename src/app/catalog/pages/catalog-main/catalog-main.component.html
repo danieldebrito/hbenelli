@@ -1,14 +1,13 @@
 <hr>
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-3">
-                <app-catalogo-side-menu (busquedaSeleccionada)="filtrar($event)" [categorias]="categorias" ></app-catalogo-side-menu>
-            </div>
-            <div class="col-sm-9">
-                <app-catalog-cards-grid [categorias]="categorias" [articulos]="articulos"></app-catalog-cards-grid>
-            </div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-3">
+            <app-catalogo-side-menu (busquedaSeleccionada)="filtrar($event)"
+                [categorias]="categorias"></app-catalogo-side-menu>
         </div>
-        <hr>
+        <div class="col-sm-9">
+            <app-catalog-cards-grid [categorias]="categorias" [articulos]="filterArticulos"></app-catalog-cards-grid>
+        </div>
     </div>
-
-   
+    <hr>
+</div>
