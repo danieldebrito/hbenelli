@@ -42,12 +42,9 @@ export class CatalogMainComponent implements OnInit {
 
   filtrar(event: Busqueda) {
     let filteredArticulos = [...this.articulos]; // resetear el filtrado cada vez que se hace una nueva búsqueda
-    if (event.rubro !== '') {
-      filteredArticulos = this.articulos.filter(a => a.subcategoria === event.rubro);
-    }
-    if (event.subrubro !== '') {
-      filteredArticulos = filteredArticulos.filter(r => r.idCategoria === event.subrubro);
-    }
+    filteredArticulos = event.rubro !== '' ? filteredArticulos.filter(a => a.subcategoria === event.rubro) : filteredArticulos;
+
+    filteredArticulos = event.idCategoria !== '' ? filteredArticulos.filter(r => r.idCategoria === event.idCategoria?.toString()) : filteredArticulos;
     this.filterArticulos = filteredArticulos;
   }
 

@@ -18,7 +18,7 @@ export class CatalogoSideMenuComponent implements OnInit {
 
   public busqueda: Busqueda = {
     rubro: "",
-    subrubro: 0
+    idCategoria: "",
   }
 
   constructor(
@@ -44,7 +44,7 @@ export class CatalogoSideMenuComponent implements OnInit {
   public onSubmit() {
 
     this.busqueda.rubro = this.altaForm.getRawValue().rubro;
-    this.busqueda.subrubro = this.altaForm.getRawValue().subrubro;
+    this.busqueda.idCategoria = this.altaForm.getRawValue().subrubro;
 
     this.busquedaSeleccionada.emit(
       this.busqueda
