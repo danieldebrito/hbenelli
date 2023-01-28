@@ -18,8 +18,6 @@ export class CatalogMainComponent implements OnInit {
 
   public categorias: Categoria[] = [];
 
-
-
   constructor(
     private articulosSv: ArticulosService,
     private categoriasSv: CategoriasService,

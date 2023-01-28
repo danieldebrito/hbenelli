@@ -12,6 +12,8 @@ import { Busqueda } from 'src/app/class/busqueda';
 export class CatalogoSideMenuComponent {
 
   @Output() busquedaSeleccionada = new EventEmitter();
+  @Output() busquedaLimpiar = new EventEmitter();
+
   @Input() categorias: Categoria[] = [];
   @Input() articulos: Articulo[] = [];
 
@@ -57,7 +59,11 @@ export class CatalogoSideMenuComponent {
     );
   }
 
-  public reset() { }
+  public reset() {
+    this.busquedaLimpiar.emit();
+    this.subrubros = [... new Set(this.articulos.map( a => a.subcategoria ))];
+
+   }
 
   ngOnChanges(changes: SimpleChanges) {
 
