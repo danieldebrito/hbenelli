@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Articulo } from 'src/app/class/articulo';
 import { Categoria } from 'src/app/class/categoria';
@@ -9,10 +9,18 @@ import { Busqueda } from 'src/app/class/busqueda';
   templateUrl: './catalogo-side-menu.component.html',
   styleUrls: ['./catalogo-side-menu.component.scss']
 })
-export class CatalogoSideMenuComponent implements OnInit {
+export class CatalogoSideMenuComponent {
 
   @Output() busquedaSeleccionada = new EventEmitter();
+  @Output() busquedaLimpiar = new EventEmitter();
+
   @Input() categorias: Categoria[] = [];
+  @Input() articulos: Articulo[] = [];
+
+  public rubros: string[] = [];
+  public subrubros: any[] = [];
+
+
 
   public articulo: Articulo;
 
@@ -51,70 +59,19 @@ export class CatalogoSideMenuComponent implements OnInit {
     );
   }
 
-  /*
-  public filtrar(repuesto: Repuesto) {
-    repuesto.marca !== '' ? this.repuestos = this.repuestos.filter(r => r.marca === repuesto.marca) : this.marcas = this.repuestos.map(r => r.marca);
-    repuesto.modelo !== '' ? this.repuestos = this.repuestos.filter(r => r.modelo === repuesto.modelo) : this.modelos = this.repuestos.map(r => r.modelo);
-
-
-    // this.mapearFiltros();
-  }
-  */
-
-  public reset() { }
-
-  /*
-  public getRepuestos() {
-    this.repuestosSv.gets().subscribe(res => {
-      this.repuestos = res;
-      this.repuesto = this.altaForm.getRawValue();
-      this.filtrarRepuestos(this.repuesto);
-    });
-  }
-
-  public filtrarRepuestos(repuesto: Repuesto) {
-    repuesto.marca !== '' ? this.repuestos = this.repuestos.filter(r => r.marca === repuesto.marca) : this.marcas = this.repuestos.map(r => r.marca);
-    repuesto.modelo !== '' ? this.repuestos = this.repuestos.filter(r => r.modelo === repuesto.modelo) : this.modelos = this.repuestos.map(r => r.modelo);
-    repuesto.rubro !== '' ? this.repuestos = this.repuestos.filter(r => r.rubro === repuesto.rubro) : this.modelos = this.repuestos.map(r => r.rubro);
-    repuesto.subRubro !== '' ? this.repuestos = this.repuestos.filter(r => r.subRubro === repuesto.subRubro) : this.modelos = this.repuestos.map(r => r.subRubro);
-
-    this.mapearFiltros();
-  }
-
-  public mapearFiltros() {
-    this.marcas = [...new Set(this.repuestos.map((r) => r.marca).sort())];
-    this.modelos = [...new Set(this.repuestos.map((r) => r.modelo).sort())];
-    this.rubros = [...new Set(this.repuestos.map((r) => r.rubro).sort())];
-    this.subRubros = [...new Set(this.repuestos.map((r) => r.subRubro).sort())];
-  }
-
-
-
   public reset() {
-    this.altaForm.reset({
-      marca: '',
-      modelo: '',
-      rubro: '',
-      subRubro: ''
-    });
+    this.busquedaLimpiar.emit();
+    this.subrubros = [... new Set(this.articulos.map( a => a.subcategoria ))];
 
-    this.repuestosSv.gets().subscribe(res => {
-      this.repuestos = res;
-      this.repuesto = {};
-      this.mapearFiltros();
+   }
 
-      this.repuestoBuscar.emit({
-        repuestoLanzado: this.repuesto,
-        repuestosLanzados: this.repuestos
-      });
+  ngOnChanges(changes: SimpleChanges) {
 
+    this.subrubros = [... new Set(this.articulos.map( a => a.subcategoria ))];
 
-    });
+    if (changes['articulos']) {
+      this.articulos = changes['articulos'].currentValue;
+    }
   }
 
-*/
-  ngOnInit(): void {
-    //this.onSubmit();
-    //this.getRepuestos();
-  }
 }
