@@ -1,4 +1,4 @@
 export interface Busqueda {
     rubro: string | null,
-    idCategoria: string | null,
+    subrubro: string | null,
   }

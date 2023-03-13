@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Articulo } from 'src/app/class/articulo';
-import { Categoria } from 'src/app/class/categoria';
+import { Subrubro } from 'src/app/class/subrubro';
 
 @Component({
   selector: 'app-catalog-cards-grid',
@@ -12,7 +12,7 @@ export class CatalogCardsGridComponent implements OnChanges {
   p = 1;
 
   @Input() articulos: Articulo[] = [];
-  @Input() categorias: Categoria[] = [];
+  @Input() subrubros: Subrubro[] = [];
  
   ngOnChanges(changes: SimpleChanges) {
     if (changes['articulos']) {

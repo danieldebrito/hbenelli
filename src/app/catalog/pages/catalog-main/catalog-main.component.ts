@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Articulo } from 'src/app/class/articulo';
-import { Categoria } from 'src/app/class/categoria';
+import { Subrubro } from 'src/app/class/subrubro';
 import { ArticulosService } from 'src/app/services/articulos.service';
-import { CategoriasService } from 'src/app/services/categorias.service';
+import { SubrubrosService } from 'src/app/services/subrubros.service';
 import { Busqueda } from 'src/app/class/busqueda';
 
 
@@ -16,30 +16,37 @@ export class CatalogMainComponent implements OnInit {
   public articulos: Articulo[] = [];
   public filterArticulos: Articulo[] = [];
 
-  public categorias: Categoria[] = [];
+  public subrubros: Subrubro[] = [];
 
   constructor(
     private articulosSv: ArticulosService,
-    private categoriasSv: CategoriasService,
+    private subrubrosSv: SubrubrosService,
   ) { }
 
   public getArticulos() {
     this.articulosSv.getAll().subscribe(data => {
       this.articulos = data;
+      this.filterArticulos = data;  // ACA MOSTRAR PRIMERO LOS HILOS, HACER !!!
+      //console.table(this.filterArticulos);
     });
+
   }
 
-  public getCategorias() {
-    this.categoriasSv.getAll().subscribe(data => {
-      this.categorias = data;
-      this.filterArticulos = data;
+  public getSubrubros() {
+    this.subrubrosSv.getAll().subscribe(data => {
+      this.subrubros = data;
+      //this.filterArticulos = data;
 
-      // console.table(this.categorias);
+      //console.table(this.filterArticulos);
     });
   }
 
   filtrar(event: Busqueda) {
 
+    this.filterArticulos = this.articulos.filter( art => art.rubro == event.rubro );
+    
+
+    /*
     console.table(event.idCategoria?.toString())
 
     let filteredArticulos = [...this.articulos]; // resetear el filtrado cada vez que se hace una nueva búsqueda
@@ -47,12 +54,14 @@ export class CatalogMainComponent implements OnInit {
 
     filteredArticulos = event.idCategoria !== '' ? filteredArticulos.filter(r => r.idCategoria == event.idCategoria?.toString()) : filteredArticulos;
     this.filterArticulos = filteredArticulos;
+    */
+
   }
 
 
 
   ngOnInit(): void {
     this.getArticulos();
-    this.getCategorias();
+    this.getSubrubros();
   }
 }

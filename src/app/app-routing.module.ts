@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'home', loadChildren: () => import('./pages/home/home.module').then(m => m.HomeModule), },
   { path: 'contact', loadChildren: () => import('./pages/contact/contact.module').then(m => m.ContactModule) },
   { path: 'nosotros', loadChildren: () => import('./pages/nosotros/nosotros.module').then(m => m.NosotrosModule) },
-  { path: 'catalogo', loadChildren: () => import('./catalog/pages/catalog-main/catalog-main.module').then(m => m.CatalogMainModule) },
+  { path: 'catalogo', loadChildren: () => import('./catalog/pages/catalog-main.module').then(m => m.CatalogMainModule) },
   { path: '**', loadChildren: () => import('./pages/page-not-found/page-not-found.module').then(m => m.PageNotFoundModule) }
 ];
 

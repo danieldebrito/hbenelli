@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Articulo } from 'src/app/class/articulo';
-import { Categoria } from 'src/app/class/categoria';
+import { Subrubro } from 'src/app/class/subrubro';
 import { Busqueda } from 'src/app/class/busqueda';
 
 @Component({
@@ -14,25 +14,25 @@ export class CatalogoSideMenuComponent {
   @Output() busquedaSeleccionada = new EventEmitter();
   @Output() busquedaLimpiar = new EventEmitter();
 
-  @Input() categorias: Categoria[] = [];
+  @Input() subrubros: Subrubro[] = [];
   @Input() articulos: Articulo[] = [];
 
   public rubros: string[] = [];
-  public subrubros: any[] = [];
-
-
 
   public articulo: Articulo;
 
   public busqueda: Busqueda = {
     rubro: "",
-    idCategoria: "",
+    subrubro: "",
   }
 
   constructor(
     // private repuestosSv: repuestosService,
   ) {
     this.articulo = {};
+
+    this.busqueda.rubro = "";
+    this.busqueda.subrubro = "";
   }
 
   altaForm = new FormGroup({
@@ -52,22 +52,23 @@ export class CatalogoSideMenuComponent {
   public onSubmit() {
 
     this.busqueda.rubro = this.altaForm.getRawValue().rubro;
-    this.busqueda.idCategoria = this.altaForm.getRawValue().subrubro;
+    this.busqueda.subrubro = this.altaForm.getRawValue().subrubro;
 
-    this.busquedaSeleccionada.emit(
-      this.busqueda
-    );
+    // console.table(this.busqueda);
+
+    this.busquedaSeleccionada.emit( this.busqueda );
   }
 
   public reset() {
+    /*
     this.busquedaLimpiar.emit();
     this.subrubros = [... new Set(this.articulos.map( a => a.subcategoria ))];
-
+*/
    }
 
   ngOnChanges(changes: SimpleChanges) {
 
-    this.subrubros = [... new Set(this.articulos.map( a => a.subcategoria ))];
+    //this.subrubros = [... new Set(this.articulos.map( a => a.subcategoria ))];
 
     if (changes['articulos']) {
       this.articulos = changes['articulos'].currentValue;
